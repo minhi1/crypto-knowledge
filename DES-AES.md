@@ -38,7 +38,9 @@ The genius of DES lies in its internal structure, known as a **Feistel Network**
 2. **The XOR Mix** (*Combining the halves*): The output from Mangler Function is then mathematically merged with the left half using XOR.
 3. **The Swap** (*Setting up the next round*): The two halves trade places. Then the original right half (which remains untouched) becomes the new left half.
 
+<div align="center">
 ![Feistel Round](./images/image.png)
+</div>
 
 ## Challenge
 
