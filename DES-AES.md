@@ -39,7 +39,8 @@ The genius of DES lies in its internal structure, known as a **Feistel Network**
 3. **The Swap** (*Setting up the next round*): The two halves trade places. Then the original right half (which remains untouched) becomes the new left half.
 
 <div align="center">
-![Feistel Round](./images/image.png)
+<!-- ![Feistel Round](./images/image.png) -->
+    <img src="./images/image.png">
 </div>
 
 ## Challenge
@@ -62,11 +63,17 @@ Before the data even hits the Feistel network, the 64-bit plaintext goes through
 
 **Initial Permutation Table**
 
-![Initial Permutation Table](./images/image-1.png)​
+<div align="center">
+    <!-- ![Initial Permutation Table](./images/image-1.png)​ -->
+    <img src="./images/image-1.png">
+</div>
 
 **Final Permutation Table**
 
-![Final Permutation Table](./images/image-2.png)
+<div align="center">
+<!-- ![Final Permutation Table](./images/image-2.png) -->
+    <img src="./images/image-2.png">
+</div>
 
 ## Key Expansion and Key Schedule
 
@@ -77,7 +84,10 @@ We start with a 64-bit key, but 8 bits are used for parity (error checking).
 
 The key size reduces from 64 to 56 bits via permutation box PC-1.
 
-![PC-1](./images/image-3.png)
+<div align="center">
+<!-- ![PC-1](./images/image-3.png) -->
+    <img src="./images/image-3.png">
+</div>
 
 The first entry of the table is 57, means that the 57th bit of the original key $K$ becomes the first bit of the permuted key.
 
@@ -89,7 +99,10 @@ Next, we split the permuted keys (56 bits) into left and right halves $C0$, $D0$
 
 Now for each pair of $Ci$, $Di$, combine them into $CiDi$ and apply permutation PC-2 to reduce from 56 bits to 48 bits.
 
-![PC-2](./images/image-4.png)
+<div align="center">
+<!-- ![PC-2](./images/image-4.png) -->
+    <img src="./images/image-4.png">
+</div>
 
 Finally, we have 16 sub-keys to schedule for each round.
 
@@ -106,21 +119,39 @@ When the right half (32-bit) enters the $f$ function, it goes through 4 stages:
 
 **E-Box**
 
-![E-Box](./images/image-5.png)
+<div align="center">
+<!-- ![E-Box](./images/image-5.png) -->
+    <img src="./images/image-5.png">
+</div>
 
 **S-boxes**
 
-![S-Box 1 and 2](./images/image-6.png)
+<div align="center">
+<!-- ![S-Box 1 and 2](./images/image-6.png) -->
+    <img src="./images/image-6.png">
+</div>
 
-![S-Box 3 and 4](./images/image-7.png)
+<div align="center">
+<!-- ![S-Box 3 and 4](./images/image-7.png) -->
+    <img src="./images/image-7.png">
+</div>
 
-![S-Box 5 and 6](./images/image-8.png)
+<div align="center">
+<!-- ![S-Box 5 and 6](./images/image-8.png) -->
+    <img src="./images/image-8.png">
+</div>
 
-![S-Box 7 and 8](./images/image-9.png)
+<div align="center">
+<!-- ![S-Box 7 and 8](./images/image-9.png) -->
+    <img src="./images/image-9.png">
+</div>
 
 **P-box**
 
-![P-box](./images/image-10.png)
+<div align="center">
+<!-- ![P-box](./images/image-10.png) -->
+    <img src="./images/image-10.png">
+</div>
 
 ## Weakness of DES
 
