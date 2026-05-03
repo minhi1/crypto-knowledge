@@ -211,21 +211,25 @@ After SubBytes, the rows of the State are cyclically shifted to the left:
 - **Row 2**: Shift left by 2 positions
 - **Row 3**: Shift left by 3 positions
 
-\[
-\begin{bmatrix}
+$$
+\left[
+\begin{array}{cccc}
 s_{0,0} & s_{0,1} & s_{0,2} & s_{0,3} \\
 s_{1,0} & s_{1,1} & s_{1,2} & s_{1,3} \\
 s_{2,0} & s_{2,1} & s_{2,2} & s_{2,3} \\
 s_{3,0} & s_{3,1} & s_{3,2} & s_{3,3}
-\end{bmatrix}
+\end{array}
+\right]
 \rightarrow
-\begin{bmatrix}
+\left[
+\begin{array}{cccc}
 s_{0,0} & s_{0,1} & s_{0,2} & s_{0,3} \\
 s_{1,1} & s_{1,2} & s_{1,3} & s_{1,0} \\
 s_{2,2} & s_{2,3} & s_{2,0} & s_{2,1} \\
 s_{3,3} & s_{3,0} & s_{3,1} & s_{3,2}
-\end{bmatrix}
-\]
+\end{array}
+\right]
+$$
 
 This is the first step toward **diffusion**. After SubBytes, each byte holds substituted data. ShiftRows ensures that bytes from the same column are now scattered across *different* columns. This prepares them for the next operation, where each column is mixed.
 
@@ -236,7 +240,31 @@ This is the most mathematically intense operation. Each column of the State is t
 Perform multiplication: $s'(x) = a(x) \oplus s(x)$, with $a(x) = \{03\}x^3 + \{01\}x^2 + \{01\}x + \{02\}$.
 
 $$
-\begin{bmatrix} s'_0 \\ s'_1 \\ s'_2 \\ s'_3 \end{bmatrix} = \begin{bmatrix} 2 & 3 & 1 & 1 \\ 1 & 2 & 3 & 1 \\ 1 & 1 & 2 & 3 \\ 3 & 1 & 1 & 2 \end{bmatrix} \begin{bmatrix} s_0 \\ s_1 \\ s_2 \\ s_3 \end{bmatrix}
+\left[
+\begin{array}{c}
+s'_0 \\
+s'_1 \\
+s'_2 \\
+s'_3
+\end{array}
+\right]
+=
+\left[
+\begin{array}{cccc}
+2 & 3 & 1 & 1 \\
+1 & 2 & 3 & 1 \\
+1 & 1 & 2 & 3 \\
+3 & 1 & 1 & 2
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+s_0 \\
+s_1 \\
+s_2 \\
+s_3
+\end{array}
+\right]
 $$
 
 The result is powerful: every output byte in a column depends on *all four* input bytes of that column. Combined with ShiftRows scattering bytes across columns, a single flipped input bit will cascade and affect every byte in the entire State after just **2 rounds**. This is called the **avalanche effect**.
