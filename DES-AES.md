@@ -240,31 +240,33 @@ This is the most mathematically intense operation. Each column of the State is t
 Perform multiplication: $s'(x) = a(x) \oplus s(x)$, with $a(x) = \{03\}x^3 + \{01\}x^2 + \{01\}x + \{02\}$.
 
 $$
+\begin{aligned}
 \left[
 \begin{array}{c}
-s'_0 \\
-s'_1 \\
-s'_2 \\
-s'_3
+s_{0}\\
+s_{1}\\
+s_{2}\\
+s_{3}
 \end{array}
 \right]
-=
+&=
 \left[
 \begin{array}{cccc}
-2 & 3 & 1 & 1 \\
-1 & 2 & 3 & 1 \\
-1 & 1 & 2 & 3 \\
+2 & 3 & 1 & 1\\
+1 & 2 & 3 & 1\\
+1 & 1 & 2 & 3\\
 3 & 1 & 1 & 2
 \end{array}
 \right]
 \left[
 \begin{array}{c}
-s_0 \\
-s_1 \\
-s_2 \\
-s_3
+s_{0}\\
+s_{1}\\
+s_{2}\\
+s_{3}
 \end{array}
 \right]
+\end{aligned}
 $$
 
 The result is powerful: every output byte in a column depends on *all four* input bytes of that column. Combined with ShiftRows scattering bytes across columns, a single flipped input bit will cascade and affect every byte in the entire State after just **2 rounds**. This is called the **avalanche effect**.
