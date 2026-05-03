@@ -168,7 +168,15 @@ But the most fundamental change is structural. DES used a **Feistel Network**, w
 AES doesn't think of its 128-bit block as a flat sequence of bits. Instead, it loads the 16 bytes of plaintext into a **4×4 grid of bytes** — called the **State**.
 
 $$
-\text{State} = \begin{bmatrix} b_0 & b_4 & b_8 & b_{12} \\ b_1 & b_5 & b_9 & b_{13} \\ b_2 & b_6 & b_{10} & b_{14} \\ b_3 & b_7 & b_{11} & b_{15} \end{bmatrix}
+\text{State} =
+\left[
+\begin{array}{cccc}
+b_0 & b_4 & b_8  & b_{12} \\
+b_1 & b_5 & b_9  & b_{13} \\
+b_2 & b_6 & b_{10} & b_{14} \\
+b_3 & b_7 & b_{11} & b_{15}
+\end{array}
+\right]
 $$
 
 Each cell holds one byte (8 bits). 4 columns × 4 rows × 8 bits = 128 bits total. The bytes are filled in **column by column**.
