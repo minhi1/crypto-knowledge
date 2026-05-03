@@ -395,7 +395,7 @@ Position:  4  3  2  1  0
 Bit:       1  0  0  1  1
 ```
 
-$$\texttt{10011} \;\longrightarrow\; x^4 + x + 1$$
+$$\texttt{10011} \longrightarrow x^4 + x + 1$$
 
 **Example:** Convert `1101011011` to a polynomial.
 
@@ -404,7 +404,7 @@ Position:  9  8  7  6  5  4  3  2  1  0
 Bit:       1  1  0  1  0  1  1  0  1  1
 ```
 
-$$\texttt{1101011011} \;\longrightarrow\; x^9 + x^8 + x^6 + x^4 + x^3 + x + 1$$
+$$\texttt{1101011011} \longrightarrow x^9 + x^8 + x^6 + x^4 + x^3 + x + 1$$
 
 Going backwards is just as mechanical: read the exponents and place a 1 at each corresponding bit position, 0 everywhere else.
 
@@ -414,8 +414,8 @@ Polynomial addition in GF(2) is done term by term, applying the GF(2) addition r
 
 **Example:** Add `1101` and `1011`.
 
-$$\texttt{1101} \;\longrightarrow\; x^3 + x^2 + 1$$
-$$\texttt{1011} \;\longrightarrow\; x^3 + x + 1$$
+$$\texttt{1101} \longrightarrow x^3 + x^2 + 1$$
+$$\texttt{1011} \longrightarrow x^3 + x + 1$$
 
 Add coefficient by coefficient:
 
@@ -435,8 +435,8 @@ Multiplication follows the normal rules of polynomial multiplication, except tha
 
 **Example:** Multiply `101` by `11`.
 
-$$\texttt{101} \;\longrightarrow\; x^2 + 1$$
-$$\texttt{11} \;\longrightarrow\; x + 1$$
+$$\texttt{101} \longrightarrow x^2 + 1$$
+$$\texttt{11} \longrightarrow x + 1$$
 
 $$(x^2 + 1)(x + 1) = x^3 + x^2 + x + 1$$
 
@@ -448,7 +448,7 @@ $$(x + 1)(x + 1) = x^2 + x + x + 1 = x^2 + 2x + 1$$
 
 In GF(2), the coefficient 2 reduces to 0, giving:
 
-$$x^2 + 0 \cdot x + 1 = x^2 + 1 \;\longrightarrow\; \texttt{101}$$
+$$x^2 + 0 \cdot x + 1 = x^2 + 1 \longrightarrow \texttt{101}$$
 
 ## Polynomial Division over GF(2)
 
