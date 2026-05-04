@@ -1,3 +1,46 @@
+<h1> Table of Contents </h1>
+
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [1. The Core Philosophy](#1-the-core-philosophy)
+  - [Challenge](#challenge)
+- [2. The DES Architecture](#2-the-des-architecture)
+  - [The Feistel Round](#the-feistel-round)
+  - [Challenge](#challenge-1)
+  - [Initial Permutation (IP) and Final Permutation (FP)](#initial-permutation-ip-and-final-permutation-fp)
+  - [Key Expansion and Key Schedule](#key-expansion-and-key-schedule)
+  - [Inside the Mangler Function (Function $f$ of DES)](#inside-the-mangler-function-function-f-of-des)
+  - [Weakness of DES](#weakness-of-des)
+- [3. The AES Architecture](#3-the-aes-architecture)
+  - [The State Matrix](#the-state-matrix)
+  - [The AES Round](#the-aes-round)
+    - [1. SubBytes (Substitution → Confusion)](#1-subbytes-substitution--confusion)
+    - [2. ShiftRows (Permutation → Diffusion, Part 1)](#2-shiftrows-permutation--diffusion-part-1)
+    - [3. MixColumns (Linear Mixing → Diffusion, Part 2)](#3-mixcolumns-linear-mixing--diffusion-part-2)
+    - [4. AddRoundKey (Key Injection)](#4-addroundkey-key-injection)
+  - [The Full AES Encryption Flow](#the-full-aes-encryption-flow)
+  - [Challenge](#challenge-2)
+  - [AES Key Schedule](#aes-key-schedule)
+  - [Challenge](#challenge-3)
+  - [Why AES is Considered Secure](#why-aes-is-considered-secure)
+- [4. Polynomial Arithmetic and Galois Fields](#4-polynomial-arithmetic-and-galois-fields)
+  - [Why AES Needs a Special Kind of Math](#why-aes-needs-a-special-kind-of-math)
+  - [GF(2): The Binary Field](#gf2-the-binary-field)
+  - [Representing Binary Strings as Polynomials](#representing-binary-strings-as-polynomials)
+  - [Polynomial Addition over GF(2)](#polynomial-addition-over-gf2)
+  - [Polynomial Multiplication over GF(2)](#polynomial-multiplication-over-gf2)
+  - [Polynomial Division over GF(2)](#polynomial-division-over-gf2)
+    - [Step-by-step process](#step-by-step-process)
+  - [Challenge](#challenge-4)
+  - [GF(2⁸): The Field Inside AES](#gf28-the-field-inside-aes)
+
+<!-- /code_chunk_output -->
+
+
+
 # 1. The Core Philosophy
 
 Both DES and AES belong to a family called **block ciphers**. Instead of encrypting data one bit at a time (like a stream cipher), they take a fixed-size block of plaintext and transform it into a block of ciphertext.
