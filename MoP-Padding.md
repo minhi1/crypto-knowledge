@@ -67,10 +67,8 @@ Because ECB is deterministic, encrypting the same plaintext block always gives t
 
 CBC fixes ECB's determinism by **chaining** each plaintext block to the previous ciphertext block before encryption. This creates a dependency chain: the ciphertext of block $i$ depends on all previous plaintext blocks.
 
-$$
-c_i = E_K(m_i \oplus c_{i-1})\\
-m_i = D_K(c_i) \oplus c_{i-1}
-$$
+$$c_i = E_K(m_i \oplus c_{i-1})$$
+$$m_i = D_K(c_i) \oplus c_{i-1}$$
 
 For the very first block, there is no "previous ciphertext." So CBC introduces an **Initialization Vector (IV)**: a random 128-bit value that plays the role of $c_0$.
 
