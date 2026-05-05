@@ -1,10 +1,8 @@
 # 1. The Mathematical Foundation
 
-RSA is built on top of several deep ideas from number theory. Before touching the cipher itself, you need to own these concepts — the cipher is just an application of the math.
+RSA is built on top of several deep ideas from number theory. Before touching the cipher itself, we need to understand these concepts.
 
 ## Modular Arithmetic
-
-You already use modular arithmetic every day. A clock only has 12 positions. After 12, it wraps back to 1. The "hours" world is arithmetic modulo 12.
 
 Formally: we say $a \equiv b \pmod{n}$ if $a$ and $b$ leave the same remainder when divided by $n$. Equivalently, $n$ divides $(a - b)$.
 
@@ -27,7 +25,7 @@ Two numbers are **coprime** (relatively prime) if $\gcd(a, b) = 1$ — they shar
 $$\gcd(12, 35) = 1 \quad \text{(coprime — 12 = 4×3, 35 = 5×7, no shared primes)}$$
 $$\gcd(12, 18) = 6 \quad \text{(not coprime)}$$
 
-Coprimality matters for RSA because modular inverses only exist when numbers are coprime.
+Coprimality matters for RSA because **modular inverses only exist when numbers are coprime**.
 
 ## Modular Inverse
 
@@ -94,6 +92,10 @@ Keep $\phi(n)$ secret. Anyone who learns $\phi(n)$ can break the key.
 Pick any $e$ satisfying:
 - $1 < e < \phi(n)$
 - $\gcd(e, \phi(n)) = 1$ (so the modular inverse of $e$ exists)
+
+> Why $\gcd(e, \phi(n)) = 1$ indicates that $e$ has a modular inverse?
+Because due to Bezout's Identity, $\gcd(e, \phi(n)) = 1$ means that there exists integer $x$ and $y$ such that 
+$ex + \phi(n)y = 1$. Modulo $\phi(n)$ on this equation, we get $ex \equiv 1 \pmod{\phi(n)}$.
 
 Common values: $e = 65537$ (= $2^{16} + 1$, chosen for fast exponentiation and well-studied security), or $e = 3$ (fast but risky — see Section 6).
 
