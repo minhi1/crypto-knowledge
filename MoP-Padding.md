@@ -26,10 +26,8 @@ Different answers produce very different security properties.
 
 ECB is the naive approach: split the plaintext into blocks, and encrypt each block independently with the same key.
 
-$$
-c_i = E_K(m_i)\\
-m_i = D_K(c_i)
-$$
+$$c_i = E_K(m_i)$$
+$$m_i = D_K(c_i)$$
 
 Each block goes straight into the cipher with no memory of what came before.
 
@@ -72,10 +70,8 @@ $$m_i = D_K(c_i) \oplus c_{i-1}$$
 
 For the very first block, there is no "previous ciphertext." So CBC introduces an **Initialization Vector (IV)**: a random 128-bit value that plays the role of $c_0$.
 
-$$
-c_0 = IV\\
-c_1 = E_K(m_1 \oplus c_0)
-$$
+$$c_0 = IV$$
+$$c_1 = E_K(m_1 \oplus c_0)$$
 
 <div align="center">
     <img src="./images/cbc-enc.png">
@@ -137,11 +133,9 @@ Like with CBC mode, an initialization vector is used in the first block. Unlike 
 
 CFB turns the block cipher into a **self-synchronizing stream cipher**. Instead of encrypting the plaintext directly, you encrypt the *previous ciphertext* to generate a keystream, then XOR the keystream with the plaintext.
 
-$$
-z_i = E_K(c_{i-1}) \quad \text{(keystream block)}\\
-c_i = m_i \oplus z_i \quad \text{(encryption)}\\
-m_i = c_i \oplus E_K(c_{i-1}) \quad \text{(decryption)}
-$$
+$$z_i = E_K(c_{i-1}) \quad \text{(keystream block)}$$
+$$c_i = m_i \oplus z_i \quad \text{(encryption)}$$
+$$m_i = c_i \oplus E_K(c_{i-1}) \quad \text{(decryption)}$$
 
 For the first block: $c_0 = IV$.
 
@@ -169,12 +163,10 @@ Full CFB operates on one block (128 bits) at a time. But it can be adapted to op
 
 OFB also generates a keystream, but unlike CFB, the keystream is generated **entirely independently of the plaintext and ciphertext**. It only depends on the IV and the key.
 
-$$
-z_0 = IV\\
-z_i = E_K(z_{i-1}) \quad \text{(keystream block)}\\
-c_i = m_i \oplus z_i \quad \text{(encryption)}\\
-m_i = c_i \oplus z_i \quad \text{(decryption)}\\
-$$
+$$z_0 = IV$$
+$$z_i = E_K(z_{i-1}) \quad \text{(keystream block)}$$
+$$c_i = m_i \oplus z_i \quad \text{(encryption)}$$
+$$m_i = c_i \oplus z_i \quad \text{(decryption)}$$
 
 <div align="center">
     <img src="./images/OFB.png">
@@ -204,9 +196,9 @@ If the same key and IV are ever used for two different messages, both messages a
 
 CTR mode is the most modern and widely recommended of the classic modes. Like OFB, it generates a keystream and XORs it with the data. But instead of chaining encrypted outputs, it generates each keystream block by encrypting a **unique counter value**.
 
-$$T_i = \text{Nonce} \| \text{Counter}_i \quad \text{(128-bit input block)}\\
-c_i = m_i \oplus E_K(T_i)\\
-m_i = c_i \oplus E_K(T_i)$$
+$$T_i = \text{Nonce} \| \text{Counter}_i \quad \text{(128-bit input block)}$$
+$$c_i = m_i \oplus E_K(T_i)$$
+$$m_i = c_i \oplus E_K(T_i)$$
 
 The nonce is a random value chosen for this message (role of nonce same as IV). The counter starts at 0 (or 1) and increments by 1 for each block.
 
@@ -437,11 +429,6 @@ OAEP (defined in PKCS#1 v2.x, also known as RSAES-OAEP) transforms the plaintext
 
 1. **Encode the message with randomness**: A random seed $r$ is combined with the message $m$ and a hash function $H$ through a **Mask Generation Function (MGF)** to produce a structured, randomized encoding of $m$.
 2. **Apply RSA to the padded block**: The encoded block is treated as the RSA plaintext $m'$, and RSA encryption proceeds as $c = (m')^e \pmod{n}$.
-
-<div align="center">
-<!-- ![OAEP Encoding](./images/oaep.png) -->
-    <img src="./images/oaep.png">
-</div>
 
 The encoding scheme ensures:
 - **Randomization**: every encryption of the same message $m$ produces a different ciphertext, because the seed $r$ is chosen fresh each time
