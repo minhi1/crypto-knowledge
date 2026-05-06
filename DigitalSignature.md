@@ -452,7 +452,7 @@ After seeing both signatures, the attacker has **both** $x_i^0$ and $x_i^1$ for 
 | Signature size | $n$ hash preimages (also large) |
 | Messages per key | **Exactly 1** |
 | Computation | Only hash evaluations — no modular exponentiation |
-| Post-quantum secure | Yes — no quantum speedup for hash preimage inversion |
+| Post-quantum secure | Yes — no quantum speedup for hash preimage inversion |x
 
 The one-time restriction is a severe limitation. In practice, the scheme is extended using a **Merkle hash tree**:
 
